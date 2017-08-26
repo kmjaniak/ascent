@@ -10,17 +10,21 @@ library(roxygen2)
 #' @keywords ascent
 #' @export
 #' @examples
-#' clean_ascent_csv(batch_names, posix = TRUE)
+#' clean_ascent_csv(batch_names, posix = TRUE, shiny = FALSE)
 
 
 clean_ascent_csv <- function(batch_names, inst = TRUE, stream = TRUE,
-                             posix = TRUE) {
+                             posix = TRUE, shiny = FALSE) {
 
 
   #create a list of file paths from the batch names(csvs are stored in "data" folder)
 
-  batch_paths <- lapply(batch_names,
+  if(shiny) {
+    batch_paths <- batch_names
+  } else {
+     batch_paths <- lapply(batch_names,
                         function(x) paste("data/", x, "_alere_results.csv", sep = ""))
+  }
 
 
   #Read in all the .csv files to "data" (creates a list of data frames for eachInstrument)
@@ -80,6 +84,8 @@ clean_ascent_csv <- function(batch_names, inst = TRUE, stream = TRUE,
   data
 
 }
+
+
 
 
 #' Read Ascent CSVs
