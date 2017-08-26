@@ -1,26 +1,22 @@
 library(dplyr)
 library(roxygen2)
 
-
-
 #' Clean Ascent CSV
-#'
 #' Reads Ascent csv, generates a data frame that is easy to manipulate.
 #' @param batch_names List of batch names
 #' @keywords ascent
 #' @export
 #' @examples
-#' clean_ascent_csv(batch_names, posix = TRUE)
+#' clean_ascent_csv(batch_names, inst = TRUE, stream = TRUE, posix = TRUE, shiny = FALSE)
 
 
-clean_ascent_csv <- function(batch_names, inst = TRUE, stream = TRUE,
-                             posix = TRUE) {
-
-
-  #create a list of file paths from the batch names(csvs are stored in "data" folder)
-
-  batch_paths <- lapply(batch_names,
+clean_ascent_csv <- function(batch_names, inst = TRUE, stream = TRUE, posix = TRUE, shiny = FALSE) {
+  if(shiny) {
+    batch_paths <- batch_names
+  } else {
+     batch_paths <- lapply(batch_names,
                         function(x) paste("data/", x, "_alere_results.csv", sep = ""))
+  }
 
 
   #Read in all the .csv files to "data" (creates a list of data frames for eachInstrument)
@@ -80,6 +76,7 @@ clean_ascent_csv <- function(batch_names, inst = TRUE, stream = TRUE,
   data
 
 }
+
 
 
 #' Read Ascent CSVs
@@ -271,7 +268,7 @@ evaluate_outliers <- function(data) {
 #'
 #' Creates a summary table including Mean, SD, %CV, %Dev from Target, and n for each QC level for each analyte.
 #' @param data Data frame processed by clean_ascent_csv() and evaluate_outliers()
-#' @param exclude_outliers defaults to TRUE. Will not include data in summary if data$Outlier is TRUE (as determined by IQR)
+#' @param exclude_outliers defaults to TRUE. Will not include data in summary if data$Outlier is TRUE (as determined by the IQR)
 #' @keywords ascent
 #' @export
 #' @examples

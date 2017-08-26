@@ -13,7 +13,8 @@ add_inst_col(data)
 Adds an "Instrument" column to a data frame resulting from read_ascent_csv().
 }
 \details{
-Extracts characters after final underscore in batch name
+Creates a new column called "Instrument" which contains
+a match found between "Batch" and a pre-defined list of instruments.
 }
 \examples{
 add_inst_col(data)

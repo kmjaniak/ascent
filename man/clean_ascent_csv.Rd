@@ -4,7 +4,7 @@
 \alias{clean_ascent_csv}
 \title{Clean Ascent CSV}
 \usage{
-clean_ascent_csv(batch_names, posix = TRUE)
+clean_ascent_csv(batch_names, inst = TRUE, stream = TRUE, posix = TRUE)
 }
 \arguments{
 \item{batch_names}{List of batch names}
