@@ -13,11 +13,20 @@ require(roxygen2)
 #' @keywords ascent
 #' @export
 #' @examples
+<<<<<<< HEAD
 #' clean_ascent_csv(batch_names)
 
 
 clean_ascent_csv <- function(batch_names, inst = TRUE, stream = TRUE,
                              posix = TRUE, direct = FALSE) {
+=======
+#' clean_ascent_csv(batch_names, posix = TRUE, shiny = FALSE)
+
+
+clean_ascent_csv <- function(batch_names, inst = TRUE, stream = TRUE,
+                             posix = TRUE, shiny = FALSE) {
+
+>>>>>>> a72ab4e7ebd5ab3f1836f514c805cc4f53558281
 
   #create a list of file paths from the batch names(csvs are stored in "data" folder)
 
@@ -27,6 +36,11 @@ clean_ascent_csv <- function(batch_names, inst = TRUE, stream = TRUE,
      batch_paths <- lapply(batch_names,
                         function(x) paste("data/", x, "_alere_results.csv", sep = ""))
   }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> a72ab4e7ebd5ab3f1836f514c805cc4f53558281
   #Read in all the .csv files to "data" (creates a list of data frames for eachInstrument)
 
   data <- lapply(batch_paths, read.csv, stringsAsFactors = FALSE)
@@ -87,6 +101,7 @@ clean_ascent_csv <- function(batch_names, inst = TRUE, stream = TRUE,
 
 
 
+<<<<<<< HEAD
 # #' Clean Ascent CSV (from full batch paths as input)
 # #'
 # #' Reads Ascent csv, generates a data frame that is easy to manipulate.
@@ -166,6 +181,8 @@ clean_ascent_csv <- function(batch_names, inst = TRUE, stream = TRUE,
 #
 # }
 
+=======
+>>>>>>> a72ab4e7ebd5ab3f1836f514c805cc4f53558281
 
 #' Read Ascent CSVs
 #'
